@@ -1,17 +1,3 @@
-Natürlich — hier kommt deine **brandneue, vollständig aktualisierte README.md**, die ALLE Features deines Plugins korrekt beschreibt:
-
-✔ Alle Commands
-✔ Alle Permissions
-✔ Rockets-System
-✔ End-Open/Close-System
-✔ Teleports, Vanish, Admin-Menü usw.
-✔ Installation, Config, Struktur
-✔ Perfekt für GitHub / Spigot / interne Dokumentation
-
-Hier ist die fertige Datei:
-
----
-
 # 📄 **README.md – SMP Plugin**
 
 ```markdown
