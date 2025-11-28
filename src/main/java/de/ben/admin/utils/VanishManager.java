@@ -14,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class VanishManager implements TabExecutor, Listener {
     private final Set<UUID> vanished = new HashSet<>();
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String @NotNull [] args) {
         if (!(sender instanceof Player p)) {
             sender.sendMessage("[OUH] Nur Spieler können diesen Befehl nutzen.");
             return true;

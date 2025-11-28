@@ -5,11 +5,10 @@ import io.papermc.paper.event.player.PlayerTradeEvent;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class CartographerTradeXPListener implements Listener {
 
-    public CartographerTradeXPListener(JavaPlugin plugin) {
+    public CartographerTradeXPListener() {
     }
 
     @EventHandler

@@ -76,7 +76,7 @@ public final class smp extends JavaPlugin {
     }
 
     private void registerCustomEvents() {
-        getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
+        getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(), this);
         getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);
         getServer().getPluginManager().registerEvents(new HappyghastSaddleListener(), this);
         getServer().getPluginManager().registerEvents(new HappyghastMountListener(this.getMessages()), this);

@@ -31,7 +31,7 @@ public class AdminMenu implements Listener, TabExecutor {
 
     // /admin Befehl
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String @NotNull [] args) {
         if (!(sender instanceof Player p)) {
             sender.sendMessage("[OUH] Nur Spieler können /admin nutzen.");
             return true;
