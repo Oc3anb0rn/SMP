@@ -1,4 +1,4 @@
-package de.ben.villager;
+package de.ben.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

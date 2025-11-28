@@ -44,10 +44,22 @@ commands:
     permission: ouh.admin.rockets
 
   cartographerxp:
-    description: cartographerxp ein/aus
-    usage: /cartographerxp
-    permission: ouh.admin.cartographer
+    description: Schaltet die XP-Belohnung für Cartographer-Trades ein oder aus
+    usage: /togglecartographerxp
+    permission: togglecartographerxp.use
+    permission-message: Du musst OP sein, um diesen Befehl zu nutzen!
 
+  happyghastspeedmultiplier:
+    description: Setzt den Harness Speed Multiplier
+    usage: /harnessmultiplier <value>
+    permission: harnessmultiplier.use
+    permission-message: Du musst OP sein, um diesen Befehl zu nutzen!
+
+  happyhastpeed:
+    description: schaltet SpeedGhast ein und aus
+    usage: /happyGhastSpeed
+    permission: happyGhastSpeed.use
+    permission-message: Du musst OP sein, um diesen Befehl zu nutzen!
 
 permissions:
   ouh.admin:

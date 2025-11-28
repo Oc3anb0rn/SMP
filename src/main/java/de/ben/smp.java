@@ -1,10 +1,13 @@
 package de.ben;
 
+import de.ben.commands.CommandUtils;
+import de.ben.enchantments.HarnessEnchantAnvilListener;
+import de.ben.entitys.HappyghastMountListener;
+import de.ben.entitys.HappyghastSaddleListener;
 import de.ben.rockets.RocketCommand;
 import de.ben.rockets.RocketListener;
 import de.ben.end.OpenEndCommand;
 import de.ben.end.EndBlocker;
-import de.ben.villager.CartographerTradeXPCommand;
 import de.ben.villager.CartographerTradeXPListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,9 +22,13 @@ public final class smp extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        loadMessages();
+        CommandUtils.registerCommands(this, this.getMessages());
 
-        this.getCommand(CartographerTradeXPCommand.CARTOGRAPHRTXP_COMMAND).setExecutor(new CartographerTradeXPCommand(this, messages));
         getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
+        getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);
+        getServer().getPluginManager().registerEvents(new HappyghastSaddleListener(), this);
+        getServer().getPluginManager().registerEvents(new HappyghastMountListener(this, this.getMessages()), this);
 
         // ------------------ CONFIG ------------------
         saveDefaultConfig();
@@ -93,5 +100,4 @@ public final class smp extends JavaPlugin {
     public Properties getMessages() {
         return messages;
     }
-
 }

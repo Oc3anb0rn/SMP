@@ -1,5 +1,6 @@
 package de.ben.villager;
 
+import de.ben.commands.CartographerTradeXPCommand;
 import io.papermc.paper.event.player.PlayerTradeEvent;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
