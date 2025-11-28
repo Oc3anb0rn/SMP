@@ -43,6 +43,11 @@ commands:
     usage: /rockets
     permission: ouh.admin.rockets
 
+  cartographerxp:
+    description: cartographerxp ein/aus
+    usage: /cartographerxp
+    permission: ouh.admin.cartographer
+
 
 permissions:
   ouh.admin:
@@ -86,4 +91,7 @@ permissions:
     default: op
 
   ouh.admin.end:
+    default: op
+
+  ouh.admin.cartographer:
     default: op

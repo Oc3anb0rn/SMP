@@ -4,13 +4,24 @@ import de.ben.rockets.RocketCommand;
 import de.ben.rockets.RocketListener;
 import de.ben.end.OpenEndCommand;
 import de.ben.end.EndBlocker;
+import de.ben.villager.CartographerTradeXPCommand;
+import de.ben.villager.CartographerTradeXPListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public final class smp extends JavaPlugin {
+
+    private Properties messages;
 
     @Override
     public void onEnable() {
+
+        this.getCommand(CartographerTradeXPCommand.CARTOGRAPHRTXP_COMMAND).setExecutor(new CartographerTradeXPCommand(this, messages));
+        getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
 
         // ------------------ CONFIG ------------------
         saveDefaultConfig();
@@ -65,4 +76,22 @@ public final class smp extends JavaPlugin {
         saveConfig();
         getLogger().info("SMP Plugin gestoppt.");
     }
+
+    private boolean loadMessages() {
+        messages = new Properties();
+        try (InputStream in = getClass().getClassLoader().getResourceAsStream("messages.properties")) {
+            if (in != null) {
+                messages.load(in);
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Properties getMessages() {
+        return messages;
+    }
+
 }
