@@ -11,7 +11,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Properties;
 
@@ -19,7 +18,7 @@ public class EndBlocker implements Listener {
 
     private final Properties messages;
 
-    public EndBlocker(JavaPlugin plugin, Properties messages) {
+    public EndBlocker(Properties messages) {
         this.messages = messages;
     }
 

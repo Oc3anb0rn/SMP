@@ -7,7 +7,6 @@ import de.ben.entitys.HappyGhastSpeedCommand;
 import de.ben.entitys.HappyGhastSpeedSwitchCommand;
 import de.ben.rockets.RocketCommand;
 import de.ben.villager.CartographerTradeXPCommand;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
@@ -43,7 +42,7 @@ public class CommandUtils {
         if (sender instanceof Player p) {
             if (!p.hasPermission(permission)) {
                 p.sendMessage(messages.getProperty("permission.deny"));
-                return true;
+                return false;
             }
         }
         return true;

@@ -3,7 +3,6 @@ package de.ben.villager;
 import de.ben.commands.CommandUtils;
 import de.ben.config.utils.ConfigUtils;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
