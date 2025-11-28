@@ -1,4 +1,4 @@
-package de.ben;
+package de.ben.messages;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

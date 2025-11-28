@@ -1,4 +1,4 @@
-package de.ben;
+package de.ben.player.utils;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;

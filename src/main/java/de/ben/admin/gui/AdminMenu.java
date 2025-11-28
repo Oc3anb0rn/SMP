@@ -1,5 +1,7 @@
-package de.ben;
+package de.ben.admin.gui;
 
+import de.ben.messages.Messages;
+import de.ben.smp;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
