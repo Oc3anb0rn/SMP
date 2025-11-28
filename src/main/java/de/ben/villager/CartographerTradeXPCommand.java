@@ -5,7 +5,6 @@ import de.ben.config.utils.ConfigUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,11 +13,9 @@ import java.util.Properties;
 
 public class CartographerTradeXPCommand implements TabExecutor {
 
-    private final JavaPlugin plugin;
     private final Properties messages;
 
-    public CartographerTradeXPCommand(JavaPlugin plugin, Properties messages) {
-        this.plugin = plugin;
+    public CartographerTradeXPCommand(Properties messages) {
         this.messages = messages;
     }
 
@@ -30,9 +27,7 @@ public class CartographerTradeXPCommand implements TabExecutor {
             }
             boolean XPEnabled = ConfigUtils.getBoolean(ConfigUtils.CONFIG_KEY_XP_ENABLED);
 
-            plugin.getConfig().set(ConfigUtils.CONFIG_KEY_XP_ENABLED, !XPEnabled);
-            //todo: add set to ConfigUtils
-            plugin.saveConfig();
+            ConfigUtils.setBoolean(ConfigUtils.CONFIG_KEY_XP_ENABLED, !XPEnabled);
 
             String msg = "XP sind jetzt " + (XPEnabled ? "aktiviert" : "deaktiviert") + "!";
             sender.sendMessage("§6Cartographer "+msg);

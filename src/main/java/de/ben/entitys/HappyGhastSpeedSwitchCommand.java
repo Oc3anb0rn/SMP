@@ -5,7 +5,6 @@ import de.ben.config.utils.ConfigUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,11 +15,9 @@ public class HappyGhastSpeedSwitchCommand implements TabExecutor {
 
     public static final String HAPPYGHAST_SPEED_ENABLED_CONFIG= "happyGhastSpeedEnabled";
 
-    private final JavaPlugin plugin;
     private final Properties messages;
 
-    public HappyGhastSpeedSwitchCommand(JavaPlugin plugin, Properties messages) {
-        this.plugin = plugin;
+    public HappyGhastSpeedSwitchCommand(Properties messages) {
         this.messages = messages;
     }
 
@@ -32,9 +29,7 @@ public class HappyGhastSpeedSwitchCommand implements TabExecutor {
                 return true;
             }
             boolean speedEnabled = ConfigUtils.getBoolean(HAPPYGHAST_SPEED_ENABLED_CONFIG);
-            plugin.getConfig().set(HAPPYGHAST_SPEED_ENABLED_CONFIG, !speedEnabled);
-            //todo: add set to ConfigUtils
-            plugin.saveConfig();
+            ConfigUtils.setBoolean(HAPPYGHAST_SPEED_ENABLED_CONFIG, !speedEnabled);
 
             String msg ="Speed ist jetzt " + (speedEnabled ? "deaktiviert" : "aktiviert") + "!";
             sender.sendMessage("§6HappyGhast " + msg);

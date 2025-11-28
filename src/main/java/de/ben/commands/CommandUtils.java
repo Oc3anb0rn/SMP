@@ -49,11 +49,11 @@ public class CommandUtils {
     }
 
     public static void registerCommands(JavaPlugin plugin, Properties messages) {
-        registerCommand(plugin, CARTOGRAPHRTXP_COMMAND, new CartographerTradeXPCommand(plugin, messages));
-        registerCommand(plugin, HAPPYGHAST_SPEED_MULTIPLIER_COMMAND, new HappyGhastSpeedCommand(plugin, messages));
-        registerCommand(plugin, HAPPYGHAST_SPEED_ENABLED_COMMAND, new HappyGhastSpeedSwitchCommand(plugin, messages));
-        registerCommand(plugin, ROCKETS_COMMAND, new RocketCommand(plugin));
-        registerCommand(plugin, OPENEND_COMMAND, new OpenEndCommand(plugin));
+        registerCommand(plugin, CARTOGRAPHRTXP_COMMAND, new CartographerTradeXPCommand(messages));
+        registerCommand(plugin, HAPPYGHAST_SPEED_MULTIPLIER_COMMAND, new HappyGhastSpeedCommand(messages));
+        registerCommand(plugin, HAPPYGHAST_SPEED_ENABLED_COMMAND, new HappyGhastSpeedSwitchCommand(messages));
+        registerCommand(plugin, ROCKETS_COMMAND, new RocketCommand());
+        registerCommand(plugin, OPENEND_COMMAND, new OpenEndCommand());
         registerCommand(plugin, ADMIN_COMMAND, new AdminMenu());
         registerCommand(plugin, VANISH_COMMAND, new VanishManager());
         registerCommand(plugin, VANISH_COMMAND, new VanishManager());

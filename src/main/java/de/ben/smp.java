@@ -71,7 +71,7 @@ public final class smp extends JavaPlugin {
 
         // ------------------ LOG ------------------
         getLogger().info("SMP Plugin gestartet!");
-        getLogger().info("Rockets-enabled: " + ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED_ENABLED));
+        getLogger().info("Rockets-enabled: " + ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED));
         getLogger().info("End-enabled: " + ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG));
     }
 
@@ -80,9 +80,7 @@ public final class smp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);
         getServer().getPluginManager().registerEvents(new HappyghastSaddleListener(), this);
         getServer().getPluginManager().registerEvents(new HappyghastMountListener(this.getMessages()), this);
-
         getServer().getPluginManager().registerEvents(new EndBlocker(this.getMessages()), this);
-
         getServer().getPluginManager().registerEvents(new AdminMenu(), this);
         getServer().getPluginManager().registerEvents(new VanishManager(), this);
         getServer().getPluginManager().registerEvents(new RocketListener(), this);

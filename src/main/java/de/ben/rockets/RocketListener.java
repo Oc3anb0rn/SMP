@@ -1,7 +1,6 @@
 package de.ben.rockets;
 
 import de.ben.config.utils.ConfigUtils;
-import de.ben.smp;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -27,7 +26,7 @@ public class RocketListener implements Listener {
 
         Player p = e.getPlayer();
 
-        if (ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED_ENABLED)) return;
+        if (ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED)) return;
 
         if (p.getInventory().getItemInMainHand().getType() != Material.FIREWORK_ROCKET) return;
         if (!p.isGliding()) return;

@@ -6,7 +6,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,10 +13,7 @@ import java.util.List;
 
 public class RocketCommand implements TabExecutor {
 
-    private final JavaPlugin plugin;
-
-    public RocketCommand(JavaPlugin plugin) {
-        this.plugin = plugin;
+    public RocketCommand() {
     }
 
     @Override
@@ -30,12 +26,8 @@ public class RocketCommand implements TabExecutor {
             }
         }
 
-        boolean newState = !ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED_ENABLED);
-
-        plugin.getConfig().set("rockets-enabled", newState);
-        //todo: add set() to ConfigUtils
-
-        plugin.saveConfig();
+        boolean newState = !ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED);
+        ConfigUtils.setBoolean(ConfigUtils.ROCKETS_ENABLED, newState);
 
         sender.sendMessage(ChatColor.GOLD + "Rockets sind jetzt: " +
                 (newState ? ChatColor.GREEN + "ENABLED" : ChatColor.RED + "DISABLED"));
