@@ -6,9 +6,8 @@ import de.ben.smp;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
 
-public class VanishManager implements CommandExecutor, TabCompleter, Listener {
+public class VanishManager implements TabExecutor, Listener {
 
     private final Set<UUID> vanished = new HashSet<>();
 

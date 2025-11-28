@@ -1,14 +1,18 @@
 package de.ben.commands;
 
+import de.ben.admin.gui.AdminMenu;
+import de.ben.admin.utils.VanishManager;
+import de.ben.end.OpenEndCommand;
 import de.ben.entitys.HappyGhastSpeedCommand;
 import de.ben.entitys.HappyGhastSpeedSwitchCommand;
+import de.ben.rockets.RocketCommand;
 import de.ben.villager.CartographerTradeXPCommand;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.PluginCommand;
-
 import java.util.Properties;
 
 public class CommandUtils {
@@ -49,14 +53,18 @@ public class CommandUtils {
         registerCommand(plugin, CARTOGRAPHRTXP_COMMAND, new CartographerTradeXPCommand(plugin, messages));
         registerCommand(plugin, HAPPYGHAST_SPEED_MULTIPLIER_COMMAND, new HappyGhastSpeedCommand(plugin, messages));
         registerCommand(plugin, HAPPYGHAST_SPEED_ENABLED_COMMAND, new HappyGhastSpeedSwitchCommand(plugin, messages));
-
-
+        registerCommand(plugin, ADMIN_COMMAND, new AdminMenu(plugin));
+        registerCommand(plugin, VANISH_COMMAND, new VanishManager());
+        registerCommand(plugin, ROCKETS_COMMAND, new RocketCommand(plugin));
+        registerCommand(plugin, VANISH_COMMAND, new VanishManager());
+        registerCommand(plugin, OPENEND_COMMAND, new OpenEndCommand(plugin));
     }
 
-    private static void registerCommand(JavaPlugin plugin, String name, CommandExecutor executor) {
+    private static void registerCommand(JavaPlugin plugin, String name, TabExecutor executor) {
         PluginCommand cmd = plugin.getCommand(name);
         if (cmd != null) {
             cmd.setExecutor(executor);
+            cmd.setTabCompleter(executor);
         } else {
             plugin.getLogger().warning("Command '" + name + "' not found in plugin.yml!");
         }

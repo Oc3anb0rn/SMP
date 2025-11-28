@@ -17,11 +17,9 @@ import java.util.Properties;
 
 public class EndBlocker implements Listener {
 
-    private final JavaPlugin plugin;
     private final Properties messages;
 
     public EndBlocker(JavaPlugin plugin, Properties messages) {
-        this.plugin = plugin;
         this.messages = messages;
     }
 

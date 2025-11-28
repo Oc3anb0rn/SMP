@@ -10,9 +10,7 @@ import de.ben.admin.gui.AdminMenu;
 import de.ben.messages.FirstJoin;
 import de.ben.messages.Messages;
 import de.ben.player.utils.TeleportRequest;
-import de.ben.rockets.RocketCommand;
 import de.ben.rockets.RocketListener;
-import de.ben.end.OpenEndCommand;
 import de.ben.end.EndBlocker;
 import de.ben.villager.CartographerTradeXPListener;
 import org.bukkit.Bukkit;
@@ -29,29 +27,17 @@ public final class smp extends JavaPlugin {
     @Override
     public void onEnable() {
         loadMessages();
-        CommandUtils.registerCommands(this, this.getMessages());
-        ConfigUtils.init(this);
 
-
-        getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
-        getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);
-        getServer().getPluginManager().registerEvents(new HappyghastSaddleListener(), this);
-        getServer().getPluginManager().registerEvents(new HappyghastMountListener(this, this.getMessages()), this);
-
-        // ------------------ CONFIG ------------------
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
 
-        // ------------------ ADMIN MENU (/admin) ------------------
-        AdminMenu adminMenu = new AdminMenu(this);
-        Bukkit.getPluginManager().registerEvents(adminMenu, this);
-        getCommand("admin").setExecutor(adminMenu);
+        CommandUtils.registerCommands(this, this.getMessages());
+        ConfigUtils.init(this);
 
-        // ------------------ VANISH (/vanish) ------------------
-        VanishManager vanishManager = new VanishManager();
-        Bukkit.getPluginManager().registerEvents(vanishManager, this);
-        getCommand("vanish").setExecutor(vanishManager);
-        getCommand("vanish").setTabCompleter(vanishManager);
+        registerCustomEvents();
+
+
+
 
         // ------------------ FIRST JOIN (/help) ------------------
         FirstJoin firstJoin = new FirstJoin(this);
@@ -72,13 +58,8 @@ public final class smp extends JavaPlugin {
         getCommand("tpa").setTabCompleter(tpa);
         getCommand("tpahere").setTabCompleter(tpa);
 
-        // ------------------ ROCKETS SYSTEM (/rockets) ------------------
-        getCommand("rockets").setExecutor(new RocketCommand(this));
-        Bukkit.getPluginManager().registerEvents(new RocketListener(this), this);
 
-        // ------------------ END OPEN/CLOSE SYSTEM (/openend) ------------------
-        getCommand("openend").setExecutor(new OpenEndCommand(this));
-        Bukkit.getPluginManager().registerEvents(new EndBlocker(this, this.getMessages()), this);
+
 
         // ------------------ LOG ------------------
         getLogger().info("SMP Plugin gestartet!");
@@ -86,23 +67,35 @@ public final class smp extends JavaPlugin {
         getLogger().info("End-enabled: " + getConfig().getBoolean("end-enabled"));
     }
 
+    private void registerCustomEvents() {
+        getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
+        getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);
+        getServer().getPluginManager().registerEvents(new HappyghastSaddleListener(), this);
+        getServer().getPluginManager().registerEvents(new HappyghastMountListener(this, this.getMessages()), this);
+
+        getServer().getPluginManager().registerEvents(new AdminMenu(this), this);
+        getServer().getPluginManager().registerEvents(new VanishManager(), this);
+        getServer().getPluginManager().registerEvents(new RocketListener(this), this);
+        getServer().getPluginManager().registerEvents(new EndBlocker(this, this.getMessages()), this);
+    }
+
+
+
     @Override
     public void onDisable() {
         saveConfig();
         getLogger().info("SMP Plugin gestoppt.");
     }
 
-    private boolean loadMessages() {
+    private void loadMessages() {
         messages = new Properties();
         try (InputStream in = getClass().getClassLoader().getResourceAsStream("messages.properties")) {
             if (in != null) {
                 messages.load(in);
-                return true;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     public Properties getMessages() {

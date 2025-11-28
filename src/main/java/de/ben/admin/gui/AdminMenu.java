@@ -1,13 +1,12 @@
 package de.ben.admin.gui;
 
 import de.ben.messages.Messages;
-import de.ben.smp;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,16 +17,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class AdminMenu implements Listener, CommandExecutor {
+public class AdminMenu implements Listener, TabExecutor {
 
-    private final smp plugin;
     private static final Set<UUID> lightningMode = new HashSet<>();
 
-    public AdminMenu(smp plugin) {
-        this.plugin = plugin;
+    public AdminMenu(JavaPlugin plugin) {
     }
 
     // /admin Befehl
@@ -255,5 +255,10 @@ public class AdminMenu implements Listener, CommandExecutor {
     // Zugriff für VanishManager
     public static boolean isLightningActive(Player p) {
         return lightningMode.contains(p.getUniqueId());
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        return List.of();
     }
 }

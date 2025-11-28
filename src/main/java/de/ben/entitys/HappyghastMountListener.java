@@ -32,7 +32,7 @@ public class HappyghastMountListener implements Listener {
         if (isHappyghast(mount) && rider instanceof Player player) {
             if (plugin.getConfig().getBoolean(HappyGhastSpeedSwitchCommand.HAPPYGHAST_SPEED_ENABLED_CONFIG, false)) {
                 double speed = applyHarnessSpeedBonus(mount);
-                rider.sendMessage(messages.getProperty("happyghast.speed") + speed);
+                player.sendMessage(messages.getProperty("happyghast.speed") + speed);
             } else {
                 removeHarnessSpeedBonus(mount);
             }

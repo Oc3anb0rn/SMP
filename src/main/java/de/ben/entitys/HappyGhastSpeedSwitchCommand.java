@@ -2,14 +2,16 @@ package de.ben.entitys;
 
 import de.ben.commands.CommandUtils;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Properties;
 
-public class HappyGhastSpeedSwitchCommand implements CommandExecutor {
+public class HappyGhastSpeedSwitchCommand implements TabExecutor {
 
     public static final String HAPPYGHAST_SPEED_ENABLED_CONFIG= "happyGhastSpeedEnabled";
 
@@ -37,5 +39,10 @@ public class HappyGhastSpeedSwitchCommand implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        return List.of();
     }
 }
