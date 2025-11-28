@@ -1,5 +1,6 @@
 package de.ben.rockets;
 
+import de.ben.config.utils.ConfigUtils;
 import de.ben.smp;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,11 +15,9 @@ import java.util.UUID;
 
 public class RocketListener implements Listener {
 
-    private final smp plugin;
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
 
-    public RocketListener(smp plugin) {
-        this.plugin = plugin;
+    public RocketListener() {
     }
 
     @EventHandler
@@ -28,7 +27,7 @@ public class RocketListener implements Listener {
 
         Player p = e.getPlayer();
 
-        if (plugin.getConfig().getBoolean("rockets-enabled")) return;
+        if (ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED_ENABLED)) return;
 
         if (p.getInventory().getItemInMainHand().getType() != Material.FIREWORK_ROCKET) return;
         if (!p.isGliding()) return;
@@ -36,7 +35,7 @@ public class RocketListener implements Listener {
         e.setCancelled(true);
 
         long now = System.currentTimeMillis();
-        int cooldownMs = plugin.getConfig().getInt("cooldown-seconds") * 1000;
+        int cooldownMs = ConfigUtils.getInt(ConfigUtils.ROCKETS_COOLDOWN_INT) * 1000;
         UUID id = p.getUniqueId();
 
         if (cooldowns.containsKey(id) && now - cooldowns.get(id) < cooldownMs) return;

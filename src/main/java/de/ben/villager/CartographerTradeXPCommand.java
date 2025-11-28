@@ -31,6 +31,7 @@ public class CartographerTradeXPCommand implements TabExecutor {
             boolean XPEnabled = ConfigUtils.getBoolean(ConfigUtils.CONFIG_KEY_XP_ENABLED);
 
             plugin.getConfig().set(ConfigUtils.CONFIG_KEY_XP_ENABLED, !XPEnabled);
+            //todo: add set to ConfigUtils
             plugin.saveConfig();
 
             String msg = "XP sind jetzt " + (XPEnabled ? "aktiviert" : "deaktiviert") + "!";

@@ -1,6 +1,7 @@
 package de.ben.entitys;
 
 import de.ben.commands.CommandUtils;
+import de.ben.config.utils.ConfigUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -30,8 +31,9 @@ public class HappyGhastSpeedSwitchCommand implements TabExecutor {
             if (!CommandUtils.checkOpOrDeny(sender, messages)) {
                 return true;
             }
-            boolean speedEnabled = plugin.getConfig().getBoolean(HAPPYGHAST_SPEED_ENABLED_CONFIG, true);
+            boolean speedEnabled = ConfigUtils.getBoolean(HAPPYGHAST_SPEED_ENABLED_CONFIG);
             plugin.getConfig().set(HAPPYGHAST_SPEED_ENABLED_CONFIG, !speedEnabled);
+            //todo: add set to ConfigUtils
             plugin.saveConfig();
 
             String msg ="Speed ist jetzt " + (speedEnabled ? "deaktiviert" : "aktiviert") + "!";

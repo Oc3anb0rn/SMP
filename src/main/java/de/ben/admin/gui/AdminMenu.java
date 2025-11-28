@@ -17,7 +17,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +26,7 @@ public class AdminMenu implements Listener, TabExecutor {
 
     private static final Set<UUID> lightningMode = new HashSet<>();
 
-    public AdminMenu(JavaPlugin plugin) {
+    public AdminMenu() {
     }
 
     // /admin Befehl

@@ -1,6 +1,7 @@
 package de.ben.entitys;
 
 import de.ben.commands.CommandUtils;
+import de.ben.config.utils.ConfigUtils;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
@@ -10,17 +11,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityMountEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Properties;
 
 public class HappyghastMountListener implements Listener {
 
-    private final JavaPlugin plugin;
     private final Properties messages;
 
-    public HappyghastMountListener(JavaPlugin plugin, Properties messages) {
-        this.plugin = plugin;
+    public HappyghastMountListener(Properties messages) {
         this.messages = messages;
     }
 
@@ -30,7 +28,7 @@ public class HappyghastMountListener implements Listener {
         Entity rider = event.getEntity();
 
         if (isHappyghast(mount) && rider instanceof Player player) {
-            if (plugin.getConfig().getBoolean(HappyGhastSpeedSwitchCommand.HAPPYGHAST_SPEED_ENABLED_CONFIG, false)) {
+            if (ConfigUtils.getBoolean(HappyGhastSpeedSwitchCommand.HAPPYGHAST_SPEED_ENABLED_CONFIG)) {
                 double speed = applyHarnessSpeedBonus(mount);
                 player.sendMessage(messages.getProperty("happyghast.speed") + speed);
             } else {
@@ -53,7 +51,7 @@ public class HappyghastMountListener implements Listener {
             assert speedAttribute != null;
             double basespeed = speedAttribute.getBaseValue();
 
-            double multiplyer = plugin.getConfig().getDouble(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG);
+            double multiplyer = ConfigUtils.getDouble(CommandUtils.HARNESS_SPEED_MULTIPLIER_CONFIG);
             double formulaResult = basespeed * (2.5 * Math.pow(harnessSpeed, 2) - 2.5 * harnessSpeed + 4.8) + 0.01 * multiplyer;
             formulaResult = formulaResult/10;
             assert flyAttribute != null;

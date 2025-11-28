@@ -1,5 +1,6 @@
 package de.ben.end;
 
+import de.ben.config.utils.ConfigUtils;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -29,8 +30,11 @@ public class OpenEndCommand implements TabExecutor {
             }
         }
 
-        boolean current = plugin.getConfig().getBoolean("end-enabled");
+        boolean current = ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG);
         plugin.getConfig().set("end-enabled", !current);
+        //todo: add set to ConfigUtils
+
+
         plugin.saveConfig();
         String msg ="End ist jetzt: " + (!current ? "§2GEÖFFNET" : "§4GESCHLOSSEN");
         sender.sendMessage("§9"+msg);

@@ -1,5 +1,6 @@
 package de.ben.rockets;
 
+import de.ben.config.utils.ConfigUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,7 +21,7 @@ public class RocketCommand implements TabExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String @NotNull [] args) {
 
         if (sender instanceof Player p) {
             if (!p.hasPermission("ouh.admin.rockets")) {
@@ -29,10 +30,11 @@ public class RocketCommand implements TabExecutor {
             }
         }
 
-        boolean current = plugin.getConfig().getBoolean("rockets-enabled");
-        boolean newState = !current;
+        boolean newState = !ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED_ENABLED);
 
         plugin.getConfig().set("rockets-enabled", newState);
+        //todo: add set() to ConfigUtils
+
         plugin.saveConfig();
 
         sender.sendMessage(ChatColor.GOLD + "Rockets sind jetzt: " +

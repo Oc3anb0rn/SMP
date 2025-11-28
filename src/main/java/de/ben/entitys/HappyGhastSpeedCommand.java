@@ -1,8 +1,8 @@
 package de.ben.entitys;
 
 import de.ben.commands.CommandUtils;
+import de.ben.config.utils.ConfigUtils;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,7 +31,7 @@ public class HappyGhastSpeedCommand implements TabExecutor {
             double multiplier;
 
             if (args.length == 0) {
-                multiplier = plugin.getConfig().getDouble(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG);
+                multiplier = ConfigUtils.getDouble(CommandUtils.HARNESS_SPEED_MULTIPLIER_CONFIG);
                 sender.sendMessage(messages.getProperty("harnessspeedmultiplier.current") + multiplier);
                 return true;
             }
@@ -43,7 +43,8 @@ public class HappyGhastSpeedCommand implements TabExecutor {
                 return false;
             }
 
-            plugin.getConfig().set(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG, multiplier);
+            plugin.getConfig().set(CommandUtils.HARNESS_SPEED_MULTIPLIER_CONFIG, multiplier);
+            //todo: add set to ConfigUtils
             plugin.saveConfig();
             sender.sendMessage(messages.getProperty("harnessspeedmultiplier.current") + multiplier);
 

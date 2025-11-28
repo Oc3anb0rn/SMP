@@ -28,7 +28,7 @@ public class CommandUtils {
     public static final String ROCKETS_COMMAND ="rockets";
     public static final String OPENEND_COMMAND ="openend";
 
-    public static final String HARNESS_SPEE_MULTIPLIER_CONFIG = "happyGhastspeedMultiplier";
+    public static final String HARNESS_SPEED_MULTIPLIER_CONFIG = "happyGhastspeedMultiplier";
 
     public static boolean checkOpOrDeny(CommandSender sender, Properties messages) {
         if (sender instanceof Player && !sender.isOp()) {
@@ -52,11 +52,11 @@ public class CommandUtils {
         registerCommand(plugin, CARTOGRAPHRTXP_COMMAND, new CartographerTradeXPCommand(plugin, messages));
         registerCommand(plugin, HAPPYGHAST_SPEED_MULTIPLIER_COMMAND, new HappyGhastSpeedCommand(plugin, messages));
         registerCommand(plugin, HAPPYGHAST_SPEED_ENABLED_COMMAND, new HappyGhastSpeedSwitchCommand(plugin, messages));
-        registerCommand(plugin, ADMIN_COMMAND, new AdminMenu(plugin));
-        registerCommand(plugin, VANISH_COMMAND, new VanishManager());
         registerCommand(plugin, ROCKETS_COMMAND, new RocketCommand(plugin));
-        registerCommand(plugin, VANISH_COMMAND, new VanishManager());
         registerCommand(plugin, OPENEND_COMMAND, new OpenEndCommand(plugin));
+        registerCommand(plugin, ADMIN_COMMAND, new AdminMenu());
+        registerCommand(plugin, VANISH_COMMAND, new VanishManager());
+        registerCommand(plugin, VANISH_COMMAND, new VanishManager());
     }
 
     private static void registerCommand(JavaPlugin plugin, String name, TabExecutor executor) {

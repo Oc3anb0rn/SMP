@@ -26,16 +26,27 @@ public final class smp extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        loadMessages();
-
+        // creates config.yml if it does not already exist
         saveDefaultConfig();
+
+        // ensures that all default values are active
         getConfig().options().copyDefaults(true);
 
-        CommandUtils.registerCommands(this, this.getMessages());
+        //initializes the configuration class so that it can be used.
         ConfigUtils.init(this);
 
+        // ensures that messages.properties is loaded
+        loadMessages();
+
+        //all own commands are registered
+        CommandUtils.registerCommands(this, this.getMessages());
+
+        //registers all own events
         registerCustomEvents();
 
+
+
+        // todo: unten noch alles auslagern!
 
 
 
@@ -58,28 +69,24 @@ public final class smp extends JavaPlugin {
         getCommand("tpa").setTabCompleter(tpa);
         getCommand("tpahere").setTabCompleter(tpa);
 
-
-
-
         // ------------------ LOG ------------------
         getLogger().info("SMP Plugin gestartet!");
-        getLogger().info("Rockets-enabled: " + getConfig().getBoolean("rockets-enabled"));
-        getLogger().info("End-enabled: " + getConfig().getBoolean("end-enabled"));
+        getLogger().info("Rockets-enabled: " + ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED_ENABLED));
+        getLogger().info("End-enabled: " + ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG));
     }
 
     private void registerCustomEvents() {
         getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
         getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);
         getServer().getPluginManager().registerEvents(new HappyghastSaddleListener(), this);
-        getServer().getPluginManager().registerEvents(new HappyghastMountListener(this, this.getMessages()), this);
+        getServer().getPluginManager().registerEvents(new HappyghastMountListener(this.getMessages()), this);
 
-        getServer().getPluginManager().registerEvents(new AdminMenu(this), this);
+        getServer().getPluginManager().registerEvents(new EndBlocker(this.getMessages()), this);
+
+        getServer().getPluginManager().registerEvents(new AdminMenu(), this);
         getServer().getPluginManager().registerEvents(new VanishManager(), this);
-        getServer().getPluginManager().registerEvents(new RocketListener(this), this);
-        getServer().getPluginManager().registerEvents(new EndBlocker(this, this.getMessages()), this);
+        getServer().getPluginManager().registerEvents(new RocketListener(), this);
     }
-
-
 
     @Override
     public void onDisable() {
