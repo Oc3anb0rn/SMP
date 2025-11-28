@@ -2,6 +2,7 @@ package de.ben;
 
 import de.ben.admin.utils.VanishManager;
 import de.ben.commands.CommandUtils;
+import de.ben.config.utils.ConfigUtils;
 import de.ben.enchantments.HarnessEnchantAnvilListener;
 import de.ben.entitys.HappyghastMountListener;
 import de.ben.entitys.HappyghastSaddleListener;
@@ -29,6 +30,8 @@ public final class smp extends JavaPlugin {
     public void onEnable() {
         loadMessages();
         CommandUtils.registerCommands(this, this.getMessages());
+        ConfigUtils.init(this);
+
 
         getServer().getPluginManager().registerEvents(new CartographerTradeXPListener(this), this);
         getServer().getPluginManager().registerEvents(new HarnessEnchantAnvilListener(), this);

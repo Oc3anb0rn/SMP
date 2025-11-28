@@ -10,8 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Properties;
 
 public class HappyGhastSpeedCommand implements CommandExecutor {
-    public static final String HAPPYGHAST_SPEED_ENABLED_ANNOUNCEMENT_CONFIG ="happyGhastSpeedEnabledAnnouncement";
-
     private final JavaPlugin plugin;
     private final Properties messages;
 

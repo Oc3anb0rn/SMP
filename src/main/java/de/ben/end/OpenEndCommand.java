@@ -1,14 +1,11 @@
 package de.ben.end;
 
-import de.ben.messages.AnnounceUtil;
 import de.ben.smp;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.TextDisplay;
 import org.jetbrains.annotations.NotNull;
 
 public class OpenEndCommand implements CommandExecutor {

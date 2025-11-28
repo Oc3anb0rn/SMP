@@ -27,8 +27,7 @@ public class EndBlocker implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        boolean allowInsertion = plugin.getConfig().getBoolean(ConfigUtils.END_ENABLED_CONFIG, false);
-        if (allowInsertion) {
+        if (ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG)) {
             return;
         }
         if (event.getHand() != EquipmentSlot.HAND) return;
@@ -40,14 +39,13 @@ public class EndBlocker implements Listener {
 
         if (block.getType() == Material.END_PORTAL_FRAME && item.getType() == Material.ENDER_EYE) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(messages.getProperty("end.deactivated"));
             event.getPlayer().sendMessage("§4" + this.messages.getProperty("end.deactivated"));
         }
     }
 
     @EventHandler
     public void onPortal(PlayerPortalEvent event) {
-        if (plugin.getConfig().getBoolean(ConfigUtils.END_ENABLED_CONFIG)) return;
+        if (ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG)) return;
 
         Location to = event.getTo();
         if (to.getWorld() != null && to.getWorld().getEnvironment() == Environment.THE_END) {

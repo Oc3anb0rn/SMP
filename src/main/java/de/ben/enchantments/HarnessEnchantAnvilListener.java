@@ -30,7 +30,7 @@ public class HarnessEnchantAnvilListener implements Listener {
             event.setResult(null);
         }
     }
-
+    @SuppressWarnings("UnstableApiUsage")
     private ItemStack enchantItem(ItemStack item, int level, PrepareAnvilEvent event) {
         ItemStack result = item.clone();
         ItemMeta meta = result.getItemMeta();

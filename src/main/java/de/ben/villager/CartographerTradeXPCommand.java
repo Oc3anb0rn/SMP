@@ -1,18 +1,16 @@
 package de.ben.villager;
 
 import de.ben.commands.CommandUtils;
+import de.ben.config.utils.ConfigUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Properties;
 
 public class CartographerTradeXPCommand implements CommandExecutor {
-
-    public static final String CONFIG_KEY_XP_ENABLED = "cartographerXpEnabled";
-    public static final String CARTOGRAPHRTXP_COMMAND ="cartographerxp";
-    public static final String CARTOGRAPHRTXP_ANNOUNCEMENT = "cartographerXPAnnouncement";
 
     private final JavaPlugin plugin;
     private final Properties messages;
@@ -23,22 +21,18 @@ public class CartographerTradeXPCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase(CARTOGRAPHRTXP_COMMAND)) {
+    public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String label, String @NotNull [] args) {
+        if (command.getName().equalsIgnoreCase(CommandUtils.CARTOGRAPHRTXP_COMMAND)) {
             if (!CommandUtils.checkOpOrDeny(sender, messages)) {
                 return true;
             }
-            boolean XPEnabled = plugin.getConfig().getBoolean(CONFIG_KEY_XP_ENABLED, true);
-            plugin.getConfig().set(CONFIG_KEY_XP_ENABLED, !XPEnabled);
+            boolean XPEnabled = ConfigUtils.getBoolean(ConfigUtils.CONFIG_KEY_XP_ENABLED);
+
+            plugin.getConfig().set(ConfigUtils.CONFIG_KEY_XP_ENABLED, !XPEnabled);
             plugin.saveConfig();
 
             String msg = "XP sind jetzt " + (XPEnabled ? "aktiviert" : "deaktiviert") + "!";
-//            if (plugin.getConfig().getBoolean(CARTOGRAPHRTXP_ANNOUNCEMENT, false)) {
-//                AnnounceUtil.sendTitleAll("§6Cartographer ", msg, 10, 60, 10);
-//            } else {
-                sender.sendMessage("§6Cartographer "+msg);
-//            }
-
+            sender.sendMessage("§6Cartographer "+msg);
             return true;
         }
         return false;

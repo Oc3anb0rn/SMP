@@ -6,6 +6,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,7 +40,7 @@ public class HappyghastSaddleListener implements Listener {
         }
     }
     private boolean isHappyGhast(Entity entity) {
-        return entity != null && entity.getType().toString().equalsIgnoreCase("HAPPY_GHAST");
+        return entity != null && entity.getType().equals(EntityType.HAPPY_GHAST);
     }
     public void removeHarnessSpeedBonus(Entity happyghast) {
         if (!happyghast.getScoreboardTags().contains("speed_harness")) return;

@@ -33,11 +33,7 @@ public class HappyGhastSpeedSwitchCommand implements CommandExecutor {
             plugin.saveConfig();
 
             String msg ="Speed ist jetzt " + (speedEnabled ? "deaktiviert" : "aktiviert") + "!";
-//            if (plugin.getConfig().getBoolean(HappyGhastSpeedCommand.HAPPYGHAST_SPEED_ENABLED_ANNOUNCEMENT_CONFIG, false)) {
-//                AnnounceUtil.sendTitleAll("§6HappyGhast ", msg, 10, 60, 10);
-//            } else {
-                sender.sendMessage("§6HappyGhast " + msg);
-//            }
+            sender.sendMessage("§6HappyGhast " + msg);
             return true;
         }
         return false;

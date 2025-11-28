@@ -4,6 +4,7 @@ import de.ben.commands.CommandUtils;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,7 +32,7 @@ public class HappyghastMountListener implements Listener {
         if (isHappyghast(mount) && rider instanceof Player player) {
             if (plugin.getConfig().getBoolean(HappyGhastSpeedSwitchCommand.HAPPYGHAST_SPEED_ENABLED_CONFIG, false)) {
                 double speed = applyHarnessSpeedBonus(mount);
-                rider.sendMessage("Happy Ghast Speed: " + speed);
+                rider.sendMessage(messages.getProperty("happyghast.speed") + speed);
             } else {
                 removeHarnessSpeedBonus(mount);
             }
@@ -39,7 +40,7 @@ public class HappyghastMountListener implements Listener {
     }
 
     private boolean isHappyghast(Entity entity) {
-        return entity != null && entity.getType().toString().equalsIgnoreCase("HAPPY_GHAST");
+        return entity != null && entity.getType().equals(EntityType.HAPPY_GHAST);
     }
 
     public double applyHarnessSpeedBonus(Entity happyghast) {
@@ -49,15 +50,15 @@ public class HappyghastMountListener implements Listener {
         if (happyghast instanceof LivingEntity livingGhast) {
             AttributeInstance speedAttribute = livingGhast.getAttribute(Attribute.MOVEMENT_SPEED);
             AttributeInstance flyAttribute = livingGhast.getAttribute(Attribute.FLYING_SPEED);
+            assert speedAttribute != null;
             double basespeed = speedAttribute.getBaseValue();
 
-            if (speedAttribute != null) {
-                double multiplyer = plugin.getConfig().getDouble(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG);;
-                double formulaResult = basespeed * (2.5 * Math.pow(harnessSpeed, 2) - 2.5 * harnessSpeed + 4.8) + 0.01 * multiplyer;
-                formulaResult = formulaResult/10;
-                flyAttribute.setBaseValue(formulaResult);
-                return formulaResult;
-            }
+            double multiplyer = plugin.getConfig().getDouble(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG);
+            double formulaResult = basespeed * (2.5 * Math.pow(harnessSpeed, 2) - 2.5 * harnessSpeed + 4.8) + 0.01 * multiplyer;
+            formulaResult = formulaResult/10;
+            assert flyAttribute != null;
+            flyAttribute.setBaseValue(formulaResult);
+            return formulaResult;
         }
         return 0;
     }
