@@ -75,7 +75,7 @@ public final class smp extends JavaPlugin {
 
         // ------------------ END OPEN/CLOSE SYSTEM (/openend) ------------------
         getCommand("openend").setExecutor(new OpenEndCommand(this));
-        Bukkit.getPluginManager().registerEvents(new EndBlocker(this), this);
+        Bukkit.getPluginManager().registerEvents(new EndBlocker(this, this.getMessages()), this);
 
         // ------------------ LOG ------------------
         getLogger().info("SMP Plugin gestartet!");
