@@ -1,5 +1,6 @@
-package de.ben.commands;
+package de.ben.entitys;
 
+import de.ben.commands.CommandUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,8 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Properties;
 
 public class HappyGhastSpeedCommand implements CommandExecutor {
-    public static final String HAPPYGHAST_SPEED_MULTIPLIER_COMMAND ="happyghastspeedmultiplier";
-    public static final String HARNESS_SPEE_MULTIPLIER_CONFIG = "happyGhastspeedMultiplier";
     public static final String HAPPYGHAST_SPEED_ENABLED_ANNOUNCEMENT_CONFIG ="happyGhastSpeedEnabledAnnouncement";
 
     private final JavaPlugin plugin;
@@ -27,11 +26,11 @@ public class HappyGhastSpeedCommand implements CommandExecutor {
             return false;
         }
 
-        if (command.getName().equalsIgnoreCase(HAPPYGHAST_SPEED_MULTIPLIER_COMMAND)) {
+        if (command.getName().equalsIgnoreCase(CommandUtils.HAPPYGHAST_SPEED_MULTIPLIER_COMMAND)) {
             double multiplier;
 
             if (args.length == 0) {
-                multiplier = plugin.getConfig().getDouble(HARNESS_SPEE_MULTIPLIER_CONFIG);
+                multiplier = plugin.getConfig().getDouble(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG);
                 sender.sendMessage(messages.getProperty("harnessspeedmultiplier.current") + multiplier);
                 return true;
             }
@@ -43,7 +42,7 @@ public class HappyGhastSpeedCommand implements CommandExecutor {
                 return false;
             }
 
-            plugin.getConfig().set(HARNESS_SPEE_MULTIPLIER_CONFIG, multiplier);
+            plugin.getConfig().set(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG, multiplier);
             plugin.saveConfig();
             sender.sendMessage(messages.getProperty("harnessspeedmultiplier.current") + multiplier);
 

@@ -1,5 +1,6 @@
 package de.ben.villager;
 
+import de.ben.commands.CommandUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,9 +25,9 @@ public class CartographerTradeXPCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase(CARTOGRAPHRTXP_COMMAND)) {
-//            if (!CommandUtils.checkOpOrDeny(sender, messages)) {
-//                return true;
-//            }
+            if (!CommandUtils.checkOpOrDeny(sender, messages)) {
+                return true;
+            }
             boolean XPEnabled = plugin.getConfig().getBoolean(CONFIG_KEY_XP_ENABLED, true);
             plugin.getConfig().set(CONFIG_KEY_XP_ENABLED, !XPEnabled);
             plugin.saveConfig();

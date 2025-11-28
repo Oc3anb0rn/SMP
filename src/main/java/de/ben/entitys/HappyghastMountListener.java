@@ -1,7 +1,6 @@
 package de.ben.entitys;
 
-import de.ben.commands.HappyGhastSpeedCommand;
-import de.ben.commands.HappyGhastSpeedSwitchCommand;
+import de.ben.commands.CommandUtils;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
@@ -53,7 +52,7 @@ public class HappyghastMountListener implements Listener {
             double basespeed = speedAttribute.getBaseValue();
 
             if (speedAttribute != null) {
-                double multiplyer = plugin.getConfig().getDouble(HappyGhastSpeedCommand.HARNESS_SPEE_MULTIPLIER_CONFIG);;
+                double multiplyer = plugin.getConfig().getDouble(CommandUtils.HARNESS_SPEE_MULTIPLIER_CONFIG);;
                 double formulaResult = basespeed * (2.5 * Math.pow(harnessSpeed, 2) - 2.5 * harnessSpeed + 4.8) + 0.01 * multiplyer;
                 formulaResult = formulaResult/10;
                 flyAttribute.setBaseValue(formulaResult);

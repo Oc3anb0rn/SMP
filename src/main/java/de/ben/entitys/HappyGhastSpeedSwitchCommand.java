@@ -1,5 +1,6 @@
-package de.ben.commands;
+package de.ben.entitys;
 
+import de.ben.commands.CommandUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Properties;
 
 public class HappyGhastSpeedSwitchCommand implements CommandExecutor {
-    public static final String HAPPYGHAST_SPEED_ENABLED_COMMAND ="happyhastpeed";
+
     public static final String HAPPYGHAST_SPEED_ENABLED_CONFIG= "happyGhastSpeedEnabled";
 
     private final JavaPlugin plugin;
@@ -23,7 +24,7 @@ public class HappyGhastSpeedSwitchCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
 
-        if (command.getName().equalsIgnoreCase(HAPPYGHAST_SPEED_ENABLED_COMMAND)) {
+        if (command.getName().equalsIgnoreCase(CommandUtils.HAPPYGHAST_SPEED_ENABLED_COMMAND)) {
             if (!CommandUtils.checkOpOrDeny(sender, messages)) {
                 return true;
             }
