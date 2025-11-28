@@ -5,6 +5,7 @@ import de.ben.admin.utils.VanishManager;
 import de.ben.end.OpenEndCommand;
 import de.ben.entitys.HappyGhastSpeedCommand;
 import de.ben.entitys.HappyGhastSpeedSwitchCommand;
+import de.ben.messages.FirstJoin;
 import de.ben.rockets.RocketCommand;
 import de.ben.villager.CartographerTradeXPCommand;
 import org.bukkit.command.CommandSender;
@@ -57,6 +58,10 @@ public class CommandUtils {
         registerCommand(plugin, ADMIN_COMMAND, new AdminMenu());
         registerCommand(plugin, VANISH_COMMAND, new VanishManager());
         registerCommand(plugin, VANISH_COMMAND, new VanishManager());
+        registerCommand(plugin, HELP_COMMAND, new FirstJoin(plugin));
+
+
+
     }
 
     private static void registerCommand(JavaPlugin plugin, String name, TabExecutor executor) {

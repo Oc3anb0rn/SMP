@@ -11,6 +11,8 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,24 +20,26 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public class FirstJoin implements Listener, CommandExecutor {
+public class FirstJoin implements Listener, TabExecutor {
 
-    private final smp plugin;
     private final File dataFile;
     private final Set<UUID> joinedPlayers = new HashSet<>();
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public FirstJoin(smp plugin) {
-        this.plugin = plugin;
+    public FirstJoin(JavaPlugin plugin) {
 
         // Plugin-Datenordner verwenden (funktioniert in 1.21)
         File pluginFolder = plugin.getDataFolder();
@@ -151,5 +155,10 @@ public class FirstJoin implements Listener, CommandExecutor {
         player.getInventory().addItem(book);
 
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        return List.of();
     }
 }

@@ -46,18 +46,7 @@ public final class smp extends JavaPlugin {
 
 
 
-        // todo: unten noch alles auslagern!
-
-
-
-        // ------------------ FIRST JOIN (/help) ------------------
-        FirstJoin firstJoin = new FirstJoin(this);
-        Bukkit.getPluginManager().registerEvents(firstJoin, this);
-        getCommand("help").setExecutor(firstJoin);
-
-        // ------------------ MESSAGES (Prefixes, Death, etc.) ------------------
-        Bukkit.getPluginManager().registerEvents(new Messages(), this);
-
+        // todo: TPA noch auslagern!
         // ------------------ TELEPORT SYSTEM (/tpa usw.) ------------------
         TeleportRequest tpa = new TeleportRequest();
         tpa.init(this);
@@ -69,10 +58,7 @@ public final class smp extends JavaPlugin {
         getCommand("tpa").setTabCompleter(tpa);
         getCommand("tpahere").setTabCompleter(tpa);
 
-        // ------------------ LOG ------------------
-        getLogger().info("SMP Plugin gestartet!");
-        getLogger().info("Rockets-enabled: " + ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED));
-        getLogger().info("End-enabled: " + ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG));
+        logging();
     }
 
     private void registerCustomEvents() {
@@ -84,6 +70,14 @@ public final class smp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AdminMenu(), this);
         getServer().getPluginManager().registerEvents(new VanishManager(), this);
         getServer().getPluginManager().registerEvents(new RocketListener(), this);
+        getServer().getPluginManager().registerEvents(new Messages(), this);
+        getServer().getPluginManager().registerEvents(new FirstJoin(this), this);
+    }
+
+    private void logging() {
+        getLogger().info("SMP Plugin gestartet!");
+        getLogger().info("Rockets-enabled: " + ConfigUtils.getBoolean(ConfigUtils.ROCKETS_ENABLED));
+        getLogger().info("End-enabled: " + ConfigUtils.getBoolean(ConfigUtils.END_ENABLED_CONFIG));
     }
 
     @Override
