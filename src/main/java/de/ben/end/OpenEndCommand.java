@@ -1,11 +1,15 @@
 package de.ben.end;
 
+import de.ben.messages.AnnounceUtil;
 import de.ben.smp;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TextDisplay;
+import org.jetbrains.annotations.NotNull;
 
 public class OpenEndCommand implements CommandExecutor {
 
@@ -16,24 +20,20 @@ public class OpenEndCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String @NotNull [] args) {
 
         if (sender instanceof Player p) {
             if (!p.hasPermission("ouh.admin.end")) {
-                p.sendMessage(ChatColor.RED + "Keine Rechte!");
+                p.sendMessage(NamedTextColor.RED + "Keine Rechte!");
                 return true;
             }
         }
 
         boolean current = plugin.getConfig().getBoolean("end-enabled");
-        boolean newState = !current;
-
-        plugin.getConfig().set("end-enabled", newState);
+        plugin.getConfig().set("end-enabled", !current);
         plugin.saveConfig();
-
-        sender.sendMessage(ChatColor.DARK_PURPLE + "End ist jetzt: " +
-                (newState ? ChatColor.GREEN + "GEÖFFNET" : ChatColor.RED + "GESCHLOSSEN"));
-
+        String msg ="End ist jetzt: " + (!current ? "§2GEÖFFNET" : "§4GESCHLOSSEN");
+        sender.sendMessage("§9"+msg);
         return true;
     }
 }

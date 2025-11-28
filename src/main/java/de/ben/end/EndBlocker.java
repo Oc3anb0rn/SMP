@@ -1,13 +1,10 @@
 package de.ben.end;
 
-import de.ben.commands.CommandUtils;
 import de.ben.config.utils.ConfigUtils;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -44,20 +41,18 @@ public class EndBlocker implements Listener {
         if (block.getType() == Material.END_PORTAL_FRAME && item.getType() == Material.ENDER_EYE) {
             event.setCancelled(true);
             event.getPlayer().sendMessage(messages.getProperty("end.deactivated"));
+            event.getPlayer().sendMessage("§4" + this.messages.getProperty("end.deactivated"));
         }
     }
 
     @EventHandler
-    public void onPortal(PlayerPortalEvent e) {
-        Player p = e.getPlayer();
+    public void onPortal(PlayerPortalEvent event) {
+        if (plugin.getConfig().getBoolean(ConfigUtils.END_ENABLED_CONFIG)) return;
 
-        if (plugin.getConfig().getBoolean("end-enabled")) return;
-
-        Location to = e.getTo();
+        Location to = event.getTo();
         if (to.getWorld() != null && to.getWorld().getEnvironment() == Environment.THE_END) {
-
-            e.setCancelled(true);
-            p.sendMessage(NamedTextColor.RED + this.messages.getProperty("end.deactivated"));
+            event.setCancelled(true);
+            event.getPlayer().sendMessage("§4" + this.messages.getProperty("end.deactivated"));
         }
     }
 }
